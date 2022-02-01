@@ -18,65 +18,12 @@ if (typeof Highcharts === 'object') {
   require("highcharts/modules/full-screen")(Highcharts);
 }
 
-let overOptions =[
-  {value: "abands", label: "Acceleration Bands"},
-  {value: "bb", label: "Bollinger Bands"},
-  {value: "dema", label: "DEMA (Double Exponential Moving Average)"},
-  {value: "ema", label: "EMA (Exponential Moving Average)"},
-  {value: "ikh", label: "Ichimoku Kinko Hyo"},
-  {value: "keltnerchannels", label: "Keltner Channels"},
-  {value: "linearRegression", label: "Linear Regression"},
-  {value: "pivotpoints", label: "Pivot Points"},
-  {value: "pc", label: "Price Channel"},
-  {value: "priceenvelopes", label: "Price Envelopes"},
-  {value: "psar", label: "PSAR (Parabolic SAR)"},
-  {value: "sma", label: "SMA (Simple Moving Average)"},
-  {value: "supertrend", label: "Super Trend"},
-  {value: "tema", label: "TEMA (Triple Exponential Moving Average)"},
-  {value: "vbp", label: "VbP (Volume by Price)"},
-  {value: "wma", label: "WMA (Weighted Moving Average)"},
-  {value: "vwap", label: "VWAP (Volume Weighted Average Price)"},
-  {value: "zigzag", label: "Zig Zag"}
-]
-let osciOptions =[
-  {value: "apo", label: "Absolute price indicator"},
-  {value: "ad", label: "A/D (Accumulation/Distribution)"},
-  {value: "aroon", label: "Aroon"},
-  {value: "aroonoscillator", label: "Aroon oscillator"},
-  {value: "atr", label: "ATR (Average True Range)"},
-  {value: "ao", label: "Awesome oscillator"},
-  {value: "cci", label: "CCI (Commodity Channel Index)"},
-  {value: "chaikin", label: "Chaikin"},
-  {value: "cmf", label: "CMF (Chaikin Money Flow)"},
-  {value: "disparityindex", label: "Disparity Index"},
-  {value: "cmo", label: "CMO (Chande Momentum Oscillator)"},
-  {value: "dmi", label: "DMI (Directional Movement Index)"},
-  {value: "dpo", label: "Detrended price"},
-  {value: "linearRegressionAngle", label: "Linear Regression Angle"},
-  {value: "linearRegressionIntercept", label: "Linear Regression Intercept"},
-  {value: "linearRegressionSlope", label: "Linear Regression Slope"},
-  {value: "klinger", label: "Klinger Oscillator"},
-  {value: "macd", label: "MACD (Moving Average Convergence Divergence)"},
-  {value: "mfi", label: "MFI (Money Flow Index)"},
-  {value: "momentum", label: "Momentum"},
-  {value: "natr", label: "NATR (Normalized Average True Range)"},
-  {value: "obv", label: "OBV (On-Balance Volume)"},
-  {value: "ppo", label: "Percentage Price oscillator"},
-  {value: "roc", label: "RoC (Rate of Change)"},
-  {value: "rsi", label: "RSI (Relative Strength Index)"},
-  {value: "slowstochastic", label: "Slow Stochastic"},
-  {value: "stochastic", label: "Stochastic"},
-  {value: "trix", label: "TRIX"},
-  {value: "williamsr", label: "Williams %R"}
-]
 
 
 export default function HighSt() {
   const chartComponentRef = useRef(null);
   const [compOptions, setCompOptions] = useState([])
   const [selCompany, setSelCompany] = useState({value:"138SL", name: "138 Student Living Jamaica Limited"});
-  const [over, setOverlay] = useState({value: "abands", label: "Acceleration Bands"});
-  const [osci, setOscillator] = useState({value: "apo", label: "Absolute price indicator"});
   const [data, setData] = useState([]);
   const [companiesInfo, setCompaniesInfo] = useState([])
   const [options, setOptions] = useState("")
@@ -173,6 +120,10 @@ useEffect( async () => {
     },
     stockTools:{
       gui: {
+        buttons: [ 
+          'indicators', 'typeChange', 'separator', 'lines', 
+          'crookedLines', 'measure', 'advanced', 'toggleAnnotations', 
+          'separator', 'zoomChange', 'fullScreen' ],
         enabled: true
       }
     },
@@ -221,13 +172,13 @@ useEffect( async () => {
           yAxis: 1
       },
        {
-          type: over["value"],
+          type: "",
           id: 'overlay',
           linkedTo: 'mainChart',
           yAxis: 0,
       }, 
       {
-          type: osci["value"],
+          type: "",
           id: 'oscillator',
           linkedTo: 'mainChart',
           yAxis: 2, 
@@ -237,7 +188,7 @@ useEffect( async () => {
           text: companiesInfo[1]
            }
   })
-  }, [data, over, osci])
+  }, [data])
 
 
   let fetchData = async (selCompany) => {
