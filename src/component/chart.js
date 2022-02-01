@@ -114,8 +114,8 @@ useEffect( async () => {
               showInLegend: true,
           },
           candlestick: {
-          color: 'red',
-            upColor: 'green',         
+          color: '#fa9078',
+            upColor: '#40d397',         
         }
     },
     stockTools:{
@@ -163,7 +163,7 @@ useEffect( async () => {
           type: 'candlestick',
           id: 'mainChart',
           name: "OHLC Prices",
-          data: ohlc
+          data: data
       }, {
           type: 'column',
           id: 'volume',
