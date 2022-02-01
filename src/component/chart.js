@@ -14,6 +14,8 @@ if (typeof Highcharts === 'object') {
   require("highcharts/modules/drag-panes")(Highcharts);
   require("highcharts/modules/annotations-advanced")(Highcharts);
   require("highcharts/modules/stock-tools")(Highcharts);
+  require("highcharts/modules/price-indicator")(Highcharts);
+  require("highcharts/modules/full-screen")(Highcharts);
 }
 
 let overOptions =[
@@ -135,6 +137,7 @@ useEffect( async () => {
     setOptions({
       chart: {
           height: 600,
+          
       },
       title: {
           text: companiesInfo[0]
@@ -171,15 +174,15 @@ useEffect( async () => {
     stockTools:{
       gui: {
         enabled: true
-
       }
-    },tooltip: {
+    },
+    tooltip: {
       shape: 'square',
       headerShape: 'callout',
       borderWidth: 0,
       shadow: false,
       positioner: function (width, height, point) {
-          var chart = this.chart,
+          let chart = this.chart,
               position;
 
           if (point.isHeader) {
@@ -261,7 +264,7 @@ useEffect( async () => {
      placeholder={"138 Student Living Jamaica Limited"}
    />
      </div>
-    
+{/*     
       <span>
       <Select
      onChange={setOverlay}
@@ -273,7 +276,7 @@ useEffect( async () => {
      options={osciOptions}
      placeholder={"Absolute price indicator"}
    />
-      </span>
+      </span> */}
 
 
     <HighchartsReact
