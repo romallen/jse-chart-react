@@ -77,9 +77,6 @@ export default function HighSt() {
   const [osci, setOscillator] = useState({value: "apo", label: "Absolute price indicator"});
   const [data, setData] = useState([]);
   const [companiesInfo, setCompaniesInfo] = useState([])
-  //const [ohlc, setOHLC] = useState([])
-  //const [closePrices, setClosePrices] = useState([])
-  //const [volume, setVolume] = useState([])
   const [options, setOptions] = useState("")
 
 
@@ -165,7 +162,12 @@ useEffect( async () => {
       plotOptions: {
           series: {
               showInLegend: true,
-      }},
+          },
+          candlestick: {
+              color: 'red',
+               upColor: 'green',
+            }
+      },
       series: [{
           type: 'candlestick',
           id: 'mainChart',
