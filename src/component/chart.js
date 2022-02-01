@@ -72,14 +72,11 @@ let osciOptions =[
 export default function HighSt() {
   const chartComponentRef = useRef(null);
   const [compOptions, setCompOptions] = useState([])
-  const [selCompany, setSelCompany] = useState({value:"WISYNCO", name: "Wisynco Group Limited"});
+  const [selCompany, setSelCompany] = useState({value:"138SL", name: "138 Student Living Jamaica Limited"});
   const [over, setOverlay] = useState({value: "abands", label: "Acceleration Bands"});
   const [osci, setOscillator] = useState({value: "apo", label: "Absolute price indicator"});
   const [data, setData] = useState([]);
   const [companiesInfo, setCompaniesInfo] = useState([])
-  //const [ohlc, setOHLC] = useState([])
-  //const [closePrices, setClosePrices] = useState([])
-  //const [volume, setVolume] = useState([])
   const [options, setOptions] = useState("")
 
 
@@ -137,7 +134,7 @@ useEffect( async () => {
 
     setOptions({
       chart: {
-          height: 650,
+          height: 600,
       },
       title: {
           text: companiesInfo[0]
@@ -168,10 +165,46 @@ useEffect( async () => {
           },
           candlestick: {
           color: 'red',
-            upColor: 'green',
-           
+            upColor: 'green',         
         }
     },
+    stockTools:{
+      gui: {
+        enabled: true
+
+      }
+    },tooltip: {
+      shape: 'square',
+      headerShape: 'callout',
+      borderWidth: 0,
+      shadow: false,
+      positioner: function (width, height, point) {
+          var chart = this.chart,
+              position;
+
+          if (point.isHeader) {
+              position = {
+                  x: Math.max(
+                      // Left side limit
+                      chart.plotLeft,
+                      Math.min(
+                          point.plotX + chart.plotLeft - width / 2,
+                          // Right side limit
+                          chart.chartWidth - width - chart.marginRight
+                      )
+                  ),
+                  y: point.plotY
+              };
+          } else {
+              position = {
+                  x: point.series.chart.plotLeft,
+                  y: point.series.yAxis.top - chart.plotTop
+              };
+          }
+
+          return position;
+      }
+  },
       series: [{
           type: 'candlestick',
           id: 'mainChart',
@@ -225,7 +258,7 @@ useEffect( async () => {
      <Select
      onChange={setSelCompany}
      options={compOptions}
-     placeholder={"Wisynco Group Limited"}
+     placeholder={"138 Student Living Jamaica Limited"}
    />
      </div>
     
@@ -233,12 +266,12 @@ useEffect( async () => {
       <Select
      onChange={setOverlay}
      options={overOptions}
-     placeholder={"over"}
+     placeholder={"Acceleration Bands"}
    />
      <Select 
      onChange={setOscillator}
      options={osciOptions}
-     placeholder={"osci"}
+     placeholder={"Absolute price indicator"}
    />
       </span>
 
