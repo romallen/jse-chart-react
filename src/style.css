@@ -1,6 +1,26 @@
 @import "https://code.highcharts.com/css/stocktools/gui.css";
 @import "https://code.highcharts.com/css/annotations/popup.css";
 
-h1, p {
-  font-family: Lato;
+
+.chart {
+  width: 95%;
+  margin-top: 3vh;
+
+  margin-left: 0 auto;
+  margin-right: 0 auto;
+  
+
+}
+h1 {
+  font-size: 2rem;
+  line-height: 20px;
+  text-align: center;
+}
+
+.chart-select {
+  width: 90%;
+  display: block;
+  align-items: center;
+  align-content: center;
+  margin: 0 auto;
 }

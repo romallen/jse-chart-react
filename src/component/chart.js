@@ -30,8 +30,6 @@ export default function HighSt() {
 
 
   
-let ticker;
-
 useEffect( async () => {
     
         let companyList = await axios.get("https://s3.ap-northeast-1.amazonaws.com/romallen.com/json/companies.json").then((res) => res.data)
@@ -43,7 +41,7 @@ useEffect( async () => {
         });
         setCompOptions(opt)
      
-     let resData = await fetchData()
+     let resData = await fetchData(selCompany)
      setData(resData)
   }, []);
 
@@ -208,26 +206,13 @@ useEffect( async () => {
 
   return (
     <div>
-     <div>
+     <div className='select-chart'>
      <Select
      onChange={setSelCompany}
      options={compOptions}
      placeholder={"138 Student Living Jamaica Limited"}
    />
      </div>
-{/*     
-      <span>
-      <Select
-     onChange={setOverlay}
-     options={overOptions}
-     placeholder={"Acceleration Bands"}
-   />
-     <Select 
-     onChange={setOscillator}
-     options={osciOptions}
-     placeholder={"Absolute price indicator"}
-   />
-      </span> */}
 
 
     <HighchartsReact
