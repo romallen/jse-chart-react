@@ -30,8 +30,10 @@ I've built a python web scraper to get the data I wanted to display with this ap
 TBD
 
 ## How to use?
+
 #Data Source
 To populate the selection component you need to provide a link to a json object with the following format
+
 ``{
  	"companies": [
  			"name": "138 STUDENT LIVING JAMAICA LIMITED",
@@ -50,6 +52,7 @@ To populate the selection component you need to provide a link to a json object 
 
 
 To get the data for the chart you need to provide a link to a json object with the following format
+
 ``[
 ["MASSY HOLDINGS LTD", "MASSY", "Massy Holdings Limited is a Trinidadian conglomerate engaged in trading, service industries and finance in Trinidad and Tobago, the wider Caribbean region and Colombia. The group has been in operation since 1923 and does business along 3 primary business lines; Integrated Retail, Gas Products & Motors and Machines. Financial Services and Strategic and other investments make up the final, legacy areas of business for them. They have a primary listing on the Trinidad and Tobago Stock Exchange and are also listed on the Jamaican Stock Exchange since January 2022. The address of its registered office is 63 Park Street, Port of Spain, Trinidad."], 
 [1643346000000, 2463.08, 3200, 2436, 2502.28, 35938], 
@@ -59,6 +62,7 @@ To get the data for the chart you need to provide a link to a json object with t
 ``
 
 The object is an array of arrays. The first element in the parent array contains 3 items `[company name, company ticker, company description]`. 
+
 The rest of the parent array contains OHLCV data `[date, open price, high price, low price, close price, volume]`.
 ***N.B. the date should be in the UNIX format.
 
