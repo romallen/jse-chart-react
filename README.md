@@ -33,13 +33,13 @@ TBD
 
 ## How to use?
 
-#Data Source
+# Data Source
 
 To populate the selection component you need to provide a link to a json object with the following format
 
 ```
 {
- 	"companies": [
+ "companies": [
  			"name": "138 STUDENT LIVING JAMAICA LIMITED",
  			"ticker": "138SL",
  		},
@@ -70,15 +70,15 @@ To get the data for the chart you need to provide a link to a json object with t
 The object is an array of arrays. The first element in the parent array contains 3 items `[company name, company ticker, company description]`. 
 
 The rest of the parent array contains OHLCV data `[date, open price, high price, low price, close price, volume]`.
-***N.B. the date should be in the UNIX format.
+*N.B. the date should be in the UNIX format.
 
 
-#Local
+# Local
 
 To run the app on your local machine use `npm run start`
 
 
-#Deploy
+# Deploy
 
 To create a deployable bundle use `npm run build`. This create creates a build folder which can be uploaded to your desire hosting environment
 
