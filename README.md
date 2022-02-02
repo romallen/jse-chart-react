@@ -8,6 +8,7 @@ I created this app because I found it difficult and time consuming to navigate t
 
 
 ## Tech/framework used
+
 <b>Built with:</b>
 - [Node](https://nodejs.org)  
 - [React](https://reactjs.org/)
@@ -16,6 +17,7 @@ I created this app because I found it difficult and time consuming to navigate t
 
 
 ## Features
+
 This app displays price and volume data on trading done on the Jamaica Stock Exchange. This data can be viewed on line, OHLC or candlestick charts. The is also the option to display technical indicators and to make annotations to the charts using the inbuilt Stock Tools displayed on the left of the chart.
 
 I've built a python web scraper to get the data I wanted to display with this app. You can find that script [here](https://github.com/romallen/jse-scraper).
@@ -32,6 +34,7 @@ TBD
 ## How to use?
 
 #Data Source
+
 To populate the selection component you need to provide a link to a json object with the following format
 
 ``{
@@ -66,10 +69,14 @@ The object is an array of arrays. The first element in the parent array contains
 The rest of the parent array contains OHLCV data `[date, open price, high price, low price, close price, volume]`.
 ***N.B. the date should be in the UNIX format.
 
+
 #Local
+
 To run the app on your local machine use `npm run start`
 
+
 #Deploy
+
 To create a deployable bundle use `npm run build`. This create creates a build folder which can be uploaded to your desire hosting environment
 
 <b>#AWS</b>
