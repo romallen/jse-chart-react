@@ -1,4 +1,4 @@
-## Jamaica Stock Exchange Charts
+# Jamaica Stock Exchange Charts
 A react app to display data from the Jamaica Stock Exchange.
 
 ## Motivation
@@ -28,12 +28,14 @@ I've built a python web scraper to get the data I wanted to display with this ap
 1. Clone this project `git clone https://github.com/romallen/jse-chart-react.git` and cd into it `cd jse-chart-react`.
 2. Install node packages `npm install`
 
+
 ## Tests
 TBD
 
+
 ## How to use?
 
-# Data Source
+### Data Source
 
 To populate the selection component you need to provide a link to a json object with the following format
 
@@ -51,7 +53,7 @@ To populate the selection component you need to provide a link to a json object 
  			"name": "ACCESS FINANCIAL SERVICES LIMITED",
  			"ticker": "AFS",
  		}
-  ]
+   ]
  }
  ```
 
@@ -73,12 +75,12 @@ The rest of the parent array contains OHLCV data `[date, open price, high price,
 *N.B. the date should be in the UNIX format.
 
 
-# Local
+### Local
 
 To run the app on your local machine use `npm run start`
 
 
-# Deploy
+### Deploy
 
 To create a deployable bundle use `npm run build`. This create creates a build folder which can be uploaded to your desire hosting environment
 
