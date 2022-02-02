@@ -14,7 +14,7 @@ I created this app because I found it difficult and time consuming to navigate t
 - [React](https://reactjs.org/)
 - [Highcharts](https://www.highcharts.com/)
 - [AWS](https://aws.amazon.com)
-
+ 
 
 ## Features
 
