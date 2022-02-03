@@ -1,6 +1,6 @@
 # Jamaica Stock Exchange Charts
 A react app to display data from the Jamaica Stock Exchange.
-
+You can used the deployed app here: https://jse-chart.romallen.com/
 ## Motivation
 I created this app because I found it difficult and time consuming to navigate the JSE website and find the information that I was looking for. I also wanted to use technical analysis tools on the data and the JSE website did not offer this feature.
 
