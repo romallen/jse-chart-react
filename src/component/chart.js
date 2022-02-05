@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 import axios from 'axios';
@@ -17,30 +17,78 @@ if (typeof Highcharts === 'object') {
   require("highcharts/modules/price-indicator")(Highcharts);
   require("highcharts/modules/full-screen")(Highcharts);
 }
+let compSelectionList = []
+const getCompanies = async () => {
+  let compObj = await axios.get("https://s3.ap-northeast-1.amazonaws.com/romallen.com/json/companies.json")
+  .then((res) => res.data)
+  .catch((e) =>{
+    console.log(e)
+    return "Error: " + e
+  })
+  let compArr =  Object.values(compObj.companies)
+  compArr.forEach(element => compSelectionList.push({value: element["ticker"], label: element["name"]}));
+}
+getCompanies()
 
 
+let chartOptions = {
+  chart: {
+      height: 600,   
+  },
+  legend: {
+      enabled: true
+  },
+  rangeSelector: {
+      selected: 1,
+  },
+  xAxis: {
+      min: Date.now()- 7778000,
+      max: Date.now()
+  },
+  yAxis: [{
+      height: '70%',
+  }, {
+      top: '60%',
+      height: '15%',
+
+  }, {
+      top: '80%',
+      height: '15%',
+  }],
+  plotOptions: {
+      series: {
+          showInLegend: true,
+      },
+      candlestick: {
+      color: '#fa9078',
+        upColor: '#40d397',         
+    }
+},
+  series: [{
+      type: 'candlestick',
+      id: 'mainChart',
+      name: "OHLC Prices",
+      data: []
+  }, {
+      type: 'column',
+      id: 'volume',
+      name: 'Volume',
+      data: [],
+      yAxis: 1
+  }
+    ]
+}
 
 export default function HighSt() {
   const chartComponentRef = useRef(null);
-  const [compOptions, setCompOptions] = useState([])
   const [selCompany, setSelCompany] = useState({value:"138SL", name: "138 Student Living Jamaica Limited"});
   const [data, setData] = useState([]);
   const [companiesInfo, setCompaniesInfo] = useState([])
-  const [options, setOptions] = useState("")
+  const [options, setOptions] = useState(chartOptions)
 
 
   
 useEffect( async () => {
-    
-        let companyList = await axios.get("https://s3.ap-northeast-1.amazonaws.com/romallen.com/json/companies.json").then((res) => res.data)
-        let compArr =  Object.values(companyList.companies)
-        let opt = []
-        compArr.forEach(element => {
-         
-          opt.push({value: element["ticker"], label: element["name"]})
-        });
-        setCompOptions(opt)
-     
      let resData = await fetchData(selCompany)
      setData(resData)
   }, []);
@@ -55,34 +103,18 @@ useEffect( async () => {
 
   useEffect(()=> {
     let dataLen = data.length
-    let ohlc = [];
     let volume = [];
-    let closePrices = []
 
     for (let i = 0; i < dataLen; i += 1) {
-      ohlc.push([
-          data[i][0], // the date
-          data[i][1], // open
-          data[i][2], // high
-          data[i][3], // low
-          data[i][4] // close
-      ]);
-  
       volume.push([
           data[i][0], // the date
           data[i][5] // the volume
       ]);
-
-      closePrices.push([ 
-        data[i][0], // the date
-          data[i][4] // close
-      ])
     }
 
     setOptions({
       chart: {
           height: 600,
-          
       },
       title: {
           text: companiesInfo[0]
@@ -112,7 +144,7 @@ useEffect( async () => {
               showInLegend: true,
           },
           candlestick: {
-          color: '#fa9078',
+            color: '#fa9078',
             upColor: '#40d397',         
         }
     },
@@ -121,7 +153,7 @@ useEffect( async () => {
         buttons: [ 
           'indicators', 'typeChange', 'separator', 'lines', 
           'crookedLines', 'measure', 'advanced', 'toggleAnnotations', 
-          'separator', 'zoomChange', 'fullScreen' ],
+          'separator', 'fullScreen' ],
         enabled: true
       }
     },
@@ -153,7 +185,6 @@ useEffect( async () => {
                   y: point.series.yAxis.top - chart.plotTop
               };
           }
-
           return position;
       }
   },
@@ -168,24 +199,12 @@ useEffect( async () => {
           name: 'Volume',
           data: volume,
           yAxis: 1
-      },
-       {
-          type: "",
-          id: 'overlay',
-          linkedTo: 'mainChart',
-          yAxis: 0,
-      }, 
-      {
-          type: "",
-          id: 'oscillator',
-          linkedTo: 'mainChart',
-          yAxis: 2, 
       }
           ],
       caption: {
           text: companiesInfo[1]
            }
-  })
+    })
   }, [data])
 
 
@@ -196,8 +215,12 @@ useEffect( async () => {
       )
       .then((res) => {
         return res.data;
+      }).catch((e) => {
+        console.log(e)
+        return "Error: " + e
       });
-      let info = d.splice(0,1)
+      
+    let info = d.splice(0,1)
     setCompaniesInfo([info[0][0], info[0][2]])
     return d  
   };
@@ -207,13 +230,12 @@ useEffect( async () => {
   return (
     <div>
      <div className='select-chart'>
-     <Select
-     onChange={setSelCompany}
-     options={compOptions}
-     placeholder={"138 Student Living Jamaica Limited"}
-   />
+      <Select
+      onChange={setSelCompany}
+      options={compSelectionList}
+      placeholder={"138 Student Living Jamaica Limited"}
+      />
      </div>
-
 
     <HighchartsReact
       highcharts={Highcharts}
@@ -221,10 +243,8 @@ useEffect( async () => {
        constructorType = { 'stockChart' }
       ref={chartComponentRef}
       updateArgs={[true]}
-      allowChartUpdate={true}
-      
+      allowChartUpdate={true}   
     />
     </div>
-  
   );
 };
