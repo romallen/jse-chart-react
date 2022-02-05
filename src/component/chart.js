@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 import axios from 'axios';
@@ -9,7 +9,8 @@ if (typeof Highcharts === 'object') {
   require("highcharts/modules/exporting")(Highcharts);
   require("highcharts/modules/export-data")(Highcharts);
   require("highcharts/modules/annotations")(Highcharts);
-  
+  require("highcharts/modules/heikinashi")(Highcharts);
+  require("highcharts/modules/hollowcandlestick")(Highcharts);
   require("highcharts/indicators/indicators-all")(Highcharts);
   require("highcharts/modules/drag-panes")(Highcharts);
   require("highcharts/modules/annotations-advanced")(Highcharts);
@@ -55,15 +56,6 @@ let chartOptions = {
       top: '80%',
       height: '15%',
   }],
-  plotOptions: {
-      series: {
-          showInLegend: true,
-      },
-      candlestick: {
-      color: '#fa9078',
-        upColor: '#40d397',         
-    }
-},
   series: [{
       type: 'candlestick',
       id: 'mainChart',
@@ -142,11 +134,15 @@ useEffect( async () => {
       plotOptions: {
           series: {
               showInLegend: true,
+              color: '#fa9078',
+              upColor: '#40d397', 
           },
-          candlestick: {
-            color: '#fa9078',
-            upColor: '#40d397',         
-        }
+          column: {
+            color: 'grey', 
+          },
+          line: {
+            color: "#687494"
+          }
     },
     stockTools:{
       gui: {

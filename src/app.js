@@ -4,7 +4,7 @@ import HChart from "./component/chart"
 
 export default function App() {
   return (
-    <div className="chart">
+    <div className="chart-container">
       <h1 className="heading">JAMAICA STOCK EXCHANGE CHARTS</h1>
       <HChart/>
     </div>
