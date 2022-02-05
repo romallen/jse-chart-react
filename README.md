@@ -5,7 +5,7 @@ You can used the deployed app here: https://jse-chart.romallen.com/
 I created this app because I found it difficult and time consuming to navigate the JSE website and find the information that I was looking for. I also wanted to use technical analysis tools on the data and the JSE website did not offer this feature.
 
 ## Screenshots
-
+![features](./images/frontend.gif)
 
 ## Tech/framework used
 
@@ -39,20 +39,21 @@ TBD
 
 To populate the selection component you need to provide a link to a json object with the following format
 
-```
+```javascript
 {
  "companies": [
- 			"name": "138 STUDENT LIVING JAMAICA LIMITED",
- 			"ticker": "138SL",
- 		},
- 		{
- 			"name": "1834 INVESTMENTS LIMITED",
- 			"ticker": "1834",
- 		},
- 		{
- 			"name": "ACCESS FINANCIAL SERVICES LIMITED",
- 			"ticker": "AFS",
- 		}
+	{
+ 		"name": "138 STUDENT LIVING JAMAICA LIMITED",
+ 		"ticker": "138SL",
+ 	},
+ 	{
+ 		"name": "1834 INVESTMENTS LIMITED",
+ 		"ticker": "1834",
+ 	},
+ 	{
+ 		"name": "ACCESS FINANCIAL SERVICES LIMITED",
+ 		"ticker": "AFS",
+ 	}
    ]
  }
  ```
