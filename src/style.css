@@ -1,18 +1,21 @@
 @import "https://code.highcharts.com/css/stocktools/gui.css";
 @import "https://code.highcharts.com/css/annotations/popup.css";
-
+* {
+  font-family: "Montserrat";
+}
 body {
   background-color: #eceffa;
+  margin: 0;
+  padding: 20px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
-.chart-container {
-  margin-top: 3vh;
-}
+
 h1 {
   font-size: 2rem;
   line-height: 20px;
   text-align: center;
 }
-
 .chart-select {
   width: 80%;
   display: block;
@@ -20,6 +23,36 @@ h1 {
   align-content: center;
   margin: 0 auto;
 }
+.chart-container {
+  margin-top: 3vh;
+}
+
+.footer-container {
+  margin-top: 1vh;
+  margin-bottom: 2vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+h2 {
+  font-size: 3rem;
+  line-height: 0px;
+}
+span {
+  margin-top: 10px;
+}
+.contact-media {
+  margin-top: 20px;
+}
+.email-link {
+  font-size: 1.5rem;
+  color: black;
+}
+img {
+  height: 4rem;
+  margin: 10px;
+}
+
 
 @media only screen and (max-width: 650px) {
 h1 {
