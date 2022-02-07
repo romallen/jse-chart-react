@@ -207,7 +207,7 @@ useEffect( async () => {
   let fetchData = async (selCompany) => {
     let d = await axios
       .get(
-        `https://s3.ap-northeast-1.amazonaws.com/romallen.com/json/${selCompany["value"]}-data.json`
+        `https://s3.ap-northeast-1.amazonaws.com/romallen.com/jsonv2/${selCompany["value"]}.json`
       )
       .then((res) => {
         return res.data;
