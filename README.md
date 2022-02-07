@@ -3,6 +3,7 @@ A react app to display data from the Jamaica Stock Exchange.
 You can used the deployed app here: https://jse-chart.romallen.com/
 ## Motivation
 I created this app because I found it difficult and time consuming to navigate the JSE website and find the information that I was looking for. I also wanted to use technical analysis tools on the data and the JSE website did not offer this feature.
+
 ![demo](./src/images/frontend.gif)
 
 ## Tech/framework used
@@ -16,9 +17,9 @@ I created this app because I found it difficult and time consuming to navigate t
 
 ## Features
 
-This app displays price and volume data on trading done on the Jamaica Stock Exchange. This data can be viewed on line, OHLC or candlestick charts. The is also the option to display technical indicators and to make annotations to the charts using the inbuilt Stock Tools displayed on the left of the chart.
+This app displays price and volume data on trading done on the Jamaica Stock Exchange. This data can be viewed on line, OHLC or candlestick charts. There is also the option to display technical indicators and to make annotations to the charts using the inbuilt Stock Tools displayed on the left of the chart.
 
-I've built a python web scraper to get the data I wanted to display with this app. You can find that script [here](https://github.com/romallen/jse-scraper).
+I've built a python web scraper to get the data displayed with this app. You can find that script [here](https://github.com/romallen/jse-scraper).
 
 
 ## Installation
@@ -29,7 +30,7 @@ I've built a python web scraper to get the data I wanted to display with this ap
 
 ## How to use?
 
-### Data Source
+### Data Sources
 
 To populate the selection component you need to provide a link to a json object. The object contains an array called "companies". Each element of the array has the name and ticker of a company.
 E.g.
