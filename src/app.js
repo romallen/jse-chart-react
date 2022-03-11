@@ -7,7 +7,7 @@ import { Grommet,Heading, Box } from 'grommet';
 export default function App() {
   const theme = {
     global: {
-      
+      margin:"none",
       font: {
         family: 'Roboto',
         size: '14px',
@@ -26,7 +26,7 @@ export default function App() {
   };
   
   return (
-    <Grommet theme={theme} >
+    <Grommet theme={theme}>
       <Navbar/>
       <Box margin={"none"} background="Neutral">
         
