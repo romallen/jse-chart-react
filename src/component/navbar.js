@@ -1,12 +1,14 @@
 import React from "react";
-
+import { Header, Button , Anchor, Text} from 'grommet';
 
 export default function Navbar() {
   return (
-    <div className="navbar-container">
-        <a className="nav-anchor" href = "https://romallen.com">
-        <p className="nav-text">Portfolio.</p>
-        </a>
-    </div>
+
+    <Header >
+      <Anchor href="https://romallen.com" label="Portfolio" />
+      {/* <Button icon={<Icons.Home />} hoverIndicator /> */}
+      {/* <Menu label="account" items={[{ label: 'logout' }]} /> */}
+    </Header>
+
   );
 }

@@ -3,7 +3,8 @@ import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 import axios from 'axios';
 import Select from 'react-select';
-
+import DataTabs from './tabs';
+import { Box, Main,Tab, Tabs } from 'grommet';
 
 if (typeof Highcharts === 'object') {
   require("highcharts/modules/exporting")(Highcharts);
@@ -197,9 +198,9 @@ useEffect( async () => {
           yAxis: 1
       }
           ],
-      caption: {
-          text: companiesInfo[1]
-           }
+      // caption: {
+      //     text: companiesInfo[1]
+      //      }
     })
   }, [data])
 
@@ -224,16 +225,18 @@ useEffect( async () => {
 
 
   return (
-    <div>
-     <div className='select-chart'>
+
+    <Main>
+      <Box>
+
+      <div className='select-chart'>
       <Select
       onChange={setSelCompany}
       options={compSelectionList}
       placeholder={"138 Student Living Jamaica Limited"}
       />
-     </div>
-
-    <HighchartsReact
+      </div>
+      <HighchartsReact
       highcharts={Highcharts}
        options={options}
        constructorType = { 'stockChart' }
@@ -241,6 +244,11 @@ useEffect( async () => {
       updateArgs={[true]}
       allowChartUpdate={true}   
     />
-    </div>
+      </Box>
+      <Box>
+        <DataTabs data={companiesInfo[1]}/>
+      </Box>
+    </Main>
+
   );
 };
