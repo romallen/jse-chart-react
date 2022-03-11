@@ -4,7 +4,7 @@ import HighchartsReact from 'highcharts-react-official';
 import axios from 'axios';
 import Select from 'react-select';
 import DataTabs from './tabs';
-import { Box, Main,Tab, Tabs } from 'grommet';
+import { Box, Main} from 'grommet';
 
 if (typeof Highcharts === 'object') {
   require("highcharts/modules/exporting")(Highcharts);
@@ -78,7 +78,7 @@ export default function HighSt() {
   const [data, setData] = useState([]);
   const [companiesInfo, setCompaniesInfo] = useState([])
   const [options, setOptions] = useState(chartOptions)
-
+  const [value, setValue] = useState("medium");
 
   
 useEffect( async () => {
@@ -107,7 +107,7 @@ useEffect( async () => {
 
     setOptions({
       chart: {
-          height: 600,
+          height: 500,
       },
       title: {
           text: companiesInfo[0]
@@ -123,15 +123,17 @@ useEffect( async () => {
           max: Date.now()
       },
       yAxis: [{
-          height: '70%',
+          height: '85%',
       }, {
-          top: '60%',
+          top: '85%',
           height: '15%',
    
-      }, {
-          top: '80%',
-          height: '15%',
-      }],
+       },
+      // {
+      //     top: '80%',
+      //     height: '15%',
+      // }
+    ],
       plotOptions: {
           series: {
               showInLegend: true,
@@ -150,7 +152,7 @@ useEffect( async () => {
         buttons: [ 
           'indicators', 'typeChange', 'separator', 'lines', 
           'crookedLines', 'measure', 'advanced', 'toggleAnnotations', 
-          'separator', 'fullScreen' ],
+           'fullScreen' ],
         enabled: true
       }
     },
@@ -159,31 +161,6 @@ useEffect( async () => {
       headerShape: 'callout',
       borderWidth: 0,
       shadow: false,
-      positioner: function (width, height, point) {
-          let chart = this.chart,
-              position;
-
-          if (point.isHeader) {
-              position = {
-                  x: Math.max(
-                      // Left side limit
-                      chart.plotLeft,
-                      Math.min(
-                          point.plotX + chart.plotLeft - width / 2,
-                          // Right side limit
-                          chart.chartWidth - width - chart.marginRight
-                      )
-                  ),
-                  y: point.plotY
-              };
-          } else {
-              position = {
-                  x: point.series.chart.plotLeft,
-                  y: point.series.yAxis.top - chart.plotTop
-              };
-          }
-          return position;
-      }
   },
       series: [{
           type: 'candlestick',
@@ -229,13 +206,12 @@ useEffect( async () => {
     <Main>
       <Box>
 
-      <div className='select-chart'>
       <Select
       onChange={setSelCompany}
       options={compSelectionList}
       placeholder={"138 Student Living Jamaica Limited"}
       />
-      </div>
+
       <HighchartsReact
       highcharts={Highcharts}
        options={options}

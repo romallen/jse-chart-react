@@ -7,6 +7,7 @@ import { Grommet,Heading, Box } from 'grommet';
 export default function App() {
   const theme = {
     global: {
+      
       font: {
         family: 'Roboto',
         size: '14px',
@@ -14,26 +15,21 @@ export default function App() {
         // height: '20px',
       },
       colors: {
-             'light-2': '#f5f5f5',
-             'text': {
-               light: 'rgba(0, 0, 0, 0.87)',
-             },
-           },
-           edgeSize: {
-             small: '14px',
-           },
-           elevation: {
-             light: {
-               medium: '0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12)',
-             },
+        //brand: '#0099ff',
+    
            },
     },
+    header:{
+      //background: '#0099ff',
+    }
+    
   };
   
   return (
-    <Grommet theme={theme}>
+    <Grommet theme={theme} >
+      <Navbar/>
       <Box margin={"none"} background="Neutral">
-        <Navbar/>
+        
         <Heading>JAMAICA STOCK EXCHANGE CHARTS</Heading>
         <HChart/>
         <Foooter/>
