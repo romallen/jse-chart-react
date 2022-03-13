@@ -5,7 +5,8 @@ import axios from 'axios';
 import Select from 'react-select';
 import DataTabs from './tabs';
 import { Box, Main} from 'grommet';
-//import 'dotenv/config' 
+import {getCompanies, getCompany} from '../data';
+
 if (typeof Highcharts === 'object') {
   require("highcharts/modules/exporting")(Highcharts);
   require("highcharts/modules/export-data")(Highcharts);
@@ -19,15 +20,6 @@ if (typeof Highcharts === 'object') {
   require("highcharts/modules/price-indicator")(Highcharts);
   require("highcharts/modules/full-screen")(Highcharts);
 }
-
-// const client = new MongoClient(process.env.DB_URL)
-// await client.connect();
-//   console.log('Connected successfully to server');
-//   const db = client.db(process.env.DB_NAME);
-//   const coll = db.collection(process.env.COLL_NAME);
-// console.log( coll.find({}).toArray())
-//   client.close()
- // https://data.mongodb-api.com/app/data-udhoo/endpoint/data/beta
 
   
   
