@@ -5,7 +5,7 @@ import axios from 'axios';
 import Select from 'react-select';
 import DataTabs from './tabs';
 import { Box, Main} from 'grommet';
-
+//import 'dotenv/config' 
 if (typeof Highcharts === 'object') {
   require("highcharts/modules/exporting")(Highcharts);
   require("highcharts/modules/export-data")(Highcharts);
@@ -19,6 +19,18 @@ if (typeof Highcharts === 'object') {
   require("highcharts/modules/price-indicator")(Highcharts);
   require("highcharts/modules/full-screen")(Highcharts);
 }
+
+// const client = new MongoClient(process.env.DB_URL)
+// await client.connect();
+//   console.log('Connected successfully to server');
+//   const db = client.db(process.env.DB_NAME);
+//   const coll = db.collection(process.env.COLL_NAME);
+// console.log( coll.find({}).toArray())
+//   client.close()
+ // https://data.mongodb-api.com/app/data-udhoo/endpoint/data/beta
+
+  
+  
 let compSelectionList = []
 const getCompanies = async () => {
   let compObj = await axios.get("https://s3.ap-northeast-1.amazonaws.com/romallen.com/json/companies.json")
@@ -35,7 +47,7 @@ getCompanies()
 
 let chartOptions = {
   chart: {
-      height: 600,   
+      height: 550,   
   },
   legend: {
       enabled: true
@@ -48,14 +60,11 @@ let chartOptions = {
       max: Date.now()
   },
   yAxis: [{
-      height: '70%',
-  }, {
-      top: '60%',
-      height: '15%',
-
-  }, {
-      top: '80%',
-      height: '15%',
+    height: '85%',
+  }, 
+  {
+    top: '85%',
+    height: '15%',
   }],
   series: [{
       type: 'candlestick',
@@ -69,7 +78,36 @@ let chartOptions = {
       data: [],
       yAxis: 1
   }
-    ]
+    ],
+    // //
+    // responsive: {
+    //   rules: [{
+    //       condition: {
+    //           maxWidth: 500
+    //       },
+    //       chartOptions: {
+    //           chart: {
+    //               height: 400
+    //           },
+    //           subtitle: {
+    //               text: null
+    //           },
+    //           rangeSelector: {
+    //             selected: 0,
+    //         },
+    //           navigator: {
+    //               enabled: false
+    //           },
+    //         //   xAxis: {
+    //         //     labels: {
+    //         //         formatter: function () {
+    //         //             return this.value.charAt(0);
+    //         //         }
+    //         //     }
+    //         // }
+    //       }
+    //   }]}
+    // //
 }
 
 export default function HighSt() {
@@ -107,7 +145,8 @@ useEffect( async () => {
 
     setOptions({
       chart: {
-          height: 500,
+          height: 550,
+         
       },
       title: {
           text: companiesInfo[0]
@@ -129,10 +168,6 @@ useEffect( async () => {
           height: '15%',
    
        },
-      // {
-      //     top: '80%',
-      //     height: '15%',
-      // }
     ],
       plotOptions: {
           series: {
@@ -175,6 +210,29 @@ useEffect( async () => {
           yAxis: 1
       }
           ],
+        //   //
+        //   responsive: {
+        //     rules: [{
+        //         condition: {
+        //             maxWidth: 500
+        //         },
+        //         chartOptions: {
+        //             chart: {
+        //                 height: 400
+        //             },
+        //             rangeSelector: {
+        //               selected: 0,
+        //           },
+        //             subtitle: {
+        //                 text: null
+        //             },
+        //             navigator: {
+        //                 enabled: false
+        //             },
+    
+        //         }
+        //     }]
+        // },
       // caption: {
       //     text: companiesInfo[1]
       //      }

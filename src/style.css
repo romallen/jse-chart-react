@@ -1,5 +1,6 @@
 @import "https://code.highcharts.com/css/stocktools/gui.css";
 @import "https://code.highcharts.com/css/annotations/popup.css";
+/* @import "https://code.highcharts.com/css/highcharts.css"; */
 * {
   font-family: "Montserrat";
 }
@@ -9,16 +10,6 @@ body {
    margin: 0;
 }
 
-
-
-
-.chart-select {
-  width: 80%;
-  display: block;
-  align-items: center;
-  align-content: center;
-  margin: 0 auto;
-}
 .chart-container {
   /* margin-top: 1vh; */
 }
