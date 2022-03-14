@@ -5,7 +5,7 @@ import axios from 'axios';
 import Select from 'react-select';
 import DataTabs from './tabs';
 import { Box, Main} from 'grommet';
-import {getCompanies, getCompany} from '../data';
+
 
 if (typeof Highcharts === 'object') {
   require("highcharts/modules/exporting")(Highcharts);
@@ -22,10 +22,10 @@ if (typeof Highcharts === 'object') {
 }
 
   
-  
+
 let compSelectionList = []
 const getCompanies = async () => {
-  let compObj = await axios.get("https://s3.ap-northeast-1.amazonaws.com/romallen.com/json/companies.json")
+  let compObj = await axios.get("https://s3.ap-northeast-1.amazonaws.com/romallen.com/jsonv3/companies_list.json")
   .then((res) => res.data)
   .catch((e) =>{
     console.log(e)
@@ -34,6 +34,7 @@ const getCompanies = async () => {
   let compArr =  Object.values(compObj.companies)
   compArr.forEach(element => compSelectionList.push({value: element["ticker"], label: element["name"]}));
 }
+
 getCompanies()
 
 
@@ -106,21 +107,22 @@ export default function HighSt() {
   const chartComponentRef = useRef(null);
   const [selCompany, setSelCompany] = useState({value:"138SL", name: "138 Student Living Jamaica Limited"});
   const [data, setData] = useState([]);
-  const [companiesInfo, setCompaniesInfo] = useState([])
+  const [companiesInfo, setCompaniesInfo] = useState({})
   const [options, setOptions] = useState(chartOptions)
   const [value, setValue] = useState("medium");
 
   
 useEffect( async () => {
      let resData = await fetchData(selCompany)
-     setData(resData)
+  
+    //  setData(resData)
   }, []);
 
  
 
   useEffect(async () => {
    let resolvedData = await fetchData(selCompany)
-    setData(resolvedData)
+    // setData(resolvedData)
   }, [selCompany]);
   
 
@@ -141,7 +143,7 @@ useEffect( async () => {
          
       },
       title: {
-          text: companiesInfo[0]
+          text: companiesInfo["name"]
       },
       legend: {
           enabled: true
@@ -235,7 +237,7 @@ useEffect( async () => {
   let fetchData = async (selCompany) => {
     let d = await axios
       .get(
-        `https://s3.ap-northeast-1.amazonaws.com/romallen.com/jsonv2/${selCompany["value"]}.json`
+        `https://s3.ap-northeast-1.amazonaws.com/romallen.com/jsonv3/${selCompany["value"]}.json`
       )
       .then((res) => {
         return res.data;
@@ -244,9 +246,13 @@ useEffect( async () => {
         return "Error: " + e
       });
       
-    let info = d.splice(0,1)
-    setCompaniesInfo([info[0][0], info[0][2]])
-    return d  
+    // let info = d.splice(0,1)
+    // setCompaniesInfo([info[0][0], info[0][2]])
+    setData(d["ohlcv"].splice(1))
+    // let info = JSON.parse(d)
+    console.log(d)
+    setCompaniesInfo(d)
+  
   };
 
 
@@ -272,7 +278,11 @@ useEffect( async () => {
     />
       </Box>
       <Box>
-        <DataTabs data={companiesInfo[1]}/>
+        <DataTabs blurb={companiesInfo["blurb"]} 
+        corpActions={companiesInfo["corporate_actions"]} 
+        news={companiesInfo["news"]} 
+        financials={companiesInfo["financialReports"]}
+        />
       </Box>
     </Main>
 
