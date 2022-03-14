@@ -10,31 +10,6 @@ body {
    margin: 0;
 }
 
-.chart-container {
-  /* margin-top: 1vh; */
-}
-
-/* .footer-container {
-  margin-top: 1vh;
-  margin-bottom: 2vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-} */
-h2 {
-  font-size: 3rem;
-  line-height: 0px;
-}
-span {
-  margin-top: 10px;
-}
-.contact-media {
-  margin-top: 20px;
-}
-.email-link {
-  font-size: 1.5rem;
-  color: black;
-}
 img {
   height: 4rem;
   margin: 10px;
