@@ -5,7 +5,7 @@ import axios from 'axios';
 import Select from 'react-select';
 import DataTabs from './tabs';
 import { Box,Card, Main} from 'grommet';
-
+import {isBrowser, isMobile } from 'react-device-detect';
 
 if (typeof Highcharts === 'object') {
   require("highcharts/modules/exporting")(Highcharts);
@@ -73,34 +73,38 @@ let chartOptions = {
   }
     ],
     // //
-    // responsive: {
-    //   rules: [{
-    //       condition: {
-    //           maxWidth: 500
-    //       },
-    //       chartOptions: {
-    //           chart: {
-    //               height: 400
-    //           },
-    //           subtitle: {
-    //               text: null
-    //           },
-    //           rangeSelector: {
-    //             selected: 0,
-    //         },
-    //           navigator: {
-    //               enabled: false
-    //           },
-    //         //   xAxis: {
-    //         //     labels: {
-    //         //         formatter: function () {
-    //         //             return this.value.charAt(0);
-    //         //         }
-    //         //     }
-    //         // }
-    //       }
-    //   }]}
-    // //
+    responsive: {
+      rules: [{
+          condition: {
+              maxWidth: 500,
+              // isMobile
+
+          },
+          chartOptions: {
+              chart: {
+                  height: 400
+              },
+              rangeSelector: {
+                selected: 0,
+            },
+            legend: {
+              enabled: false
+          },
+              subtitle: {
+                  text: null
+              },
+              navigator: {
+                  enabled: false
+              }, 
+              stockTools:{
+                gui: {
+                  enabled: false
+                }
+              }
+
+          }
+      }]
+  },
 }
 
 export default function HighSt() {
@@ -189,7 +193,7 @@ useEffect( async () => {
       shape: 'square',
       headerShape: 'callout',
       borderWidth: 0,
-      shadow: false,
+      shadow: true,
   },
       series: [{
           type: 'candlestick',
@@ -205,31 +209,38 @@ useEffect( async () => {
       }
           ],
         //   //
-        //   responsive: {
-        //     rules: [{
-        //         condition: {
-        //             maxWidth: 500
-        //         },
-        //         chartOptions: {
-        //             chart: {
-        //                 height: 400
-        //             },
-        //             rangeSelector: {
-        //               selected: 0,
-        //           },
-        //             subtitle: {
-        //                 text: null
-        //             },
-        //             navigator: {
-        //                 enabled: false
-        //             },
+          responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500,
+                    // isMobile
+                },
+                chartOptions: {
+                    chart: {
+                        height: 400
+                    },
+                    rangeSelector: {
+                      selected: 0,
+                    },
+                    legend: {
+                      enabled: false
+                    },
+                    subtitle: {
+                        text: null
+                    },
+                    navigator: {
+                        enabled: false
+                    }, 
+                    stockTools:{
+                      gui: {
+                        enabled: false
+                      }
+                    }
     
-        //         }
-        //     }]
-        // },
-      // caption: {
-      //     text: companiesInfo[1]
-      //      }
+                }
+            }]
+        },
+  
     })
   }, [data])
 
@@ -250,7 +261,7 @@ useEffect( async () => {
     // setCompaniesInfo([info[0][0], info[0][2]])
     setData(d["ohlcv"].splice(1))
     // let info = JSON.parse(d)
-    console.log(d)
+    console.log(isMobile)
     setCompaniesInfo(d)
   
   };
