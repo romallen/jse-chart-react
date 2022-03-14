@@ -4,7 +4,7 @@ import HighchartsReact from 'highcharts-react-official';
 import axios from 'axios';
 import Select from 'react-select';
 import DataTabs from './tabs';
-import { Box, Main} from 'grommet';
+import { Box,Card, Main} from 'grommet';
 
 
 if (typeof Highcharts === 'object') {
@@ -259,8 +259,8 @@ useEffect( async () => {
 
   return (
 
-    <Main>
-      <Box>
+    <Main pad={"small"}>
+      <Card pad={"small"} background= {"#ffffff"} margin={"xxsmall"}>
 
       <Select
       onChange={setSelCompany}
@@ -276,14 +276,14 @@ useEffect( async () => {
       updateArgs={[true]}
       allowChartUpdate={true}   
     />
-      </Box>
-      <Box>
+      </Card>
+      <Card background= {"#ffffff"} margin={"xxsmall"}>
         <DataTabs blurb={companiesInfo["blurb"]} 
         corpActions={companiesInfo["corporate_actions"]} 
         news={companiesInfo["news"]} 
         financials={companiesInfo["financialReports"]}
         />
-      </Box>
+      </Card>
     </Main>
 
   );

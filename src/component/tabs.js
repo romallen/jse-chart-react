@@ -11,9 +11,9 @@ export default function DataTabs(props) {
     let n = []
     props.news.forEach((element, index) => {
       n.push(      
-      <Card pad= "medium" key={index}>
-        <Anchor href={`https://www.jamstockex.com/${element["slug"]}`} label= {element["title"] } color={"black"} ></Anchor>
-        </Card>)
+
+        <Anchor key={index} href={`https://www.jamstockex.com/${element["slug"]}`} label= {element["title"] } color={"black"} ></Anchor>
+        )
     })
     setNews(n)
   } catch (error) {  
@@ -28,9 +28,8 @@ export default function DataTabs(props) {
     let n = []
     props.financials.forEach((element, index) => {
       n.push(
-      <Card pad= "medium" key={index}>
-        <Anchor href={`https://mymoneyja.com/reports/${element["filename"]}`} label= {element["display_name"]} color={"black"} ></Anchor>
-      </Card>)
+        <Anchor key={index} href={`https://mymoneyja.com/reports/${element["filename"]}`} label= {element["display_name"]} color={"black"} ></Anchor>
+   )
     })
     setFinancials(n)
   } catch (error) {  
@@ -59,7 +58,7 @@ export default function DataTabs(props) {
   return (
     <Tabs color={"black"}>
     <Tab title="About" color={"black"}>
-      <Box pad="medium">{<Card pad= "medium">{props.blurb}</Card>}</Box>
+      <Box pad="medium">{props.blurb}</Box>
     </Tab>
     <Tab title="Financials" color={"black"}>
       <Box pad="medium">{financials}</Box>

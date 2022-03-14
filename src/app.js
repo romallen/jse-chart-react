@@ -16,11 +16,34 @@ export default function App() {
       },
       colors: {
         //brand: '#0099ff',
-    
            },
     },
     header:{
       //background: '#0099ff',
+    },
+    tab: {
+      color: "black",
+      border: {
+        side: "bottom",
+        size: "small",
+        color: {
+          dark: "accent-1",
+          light: "green",
+        },
+        active: {
+          color: {
+            dark: "white",
+            light: "black",
+          },
+        },
+        hover: {
+          color: {
+            dark: "white",
+            light: "black",
+          },
+          // extend: undefined,
+        },
+      }
     }
     
   };
@@ -28,9 +51,9 @@ export default function App() {
   return (
     <Grommet theme={theme}>
       <Navbar/>
-      <Box margin={"none"} background="Neutral">
+      <Box margin={"none"} background="Neutral" pad={"none"} gap={"none"}>
         
-        <Heading>JAMAICA STOCK EXCHANGE CHARTS</Heading>
+        <Heading size="small" margin={"none"} pad="none" alignSelf="center">JAMAICA STOCK EXCHANGE CHARTS</Heading>
         <HChart/>
         <Foooter/>
       </Box>
