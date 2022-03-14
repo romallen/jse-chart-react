@@ -1,14 +1,14 @@
 import React from "react";
-import { Header, Button , Anchor, Text} from 'grommet';
+import { Header, Button, Anchor, Text } from "grommet";
 
 export default function Navbar() {
   return (
-
     <Header background={"#00a087"} pad="small" border={false}>
       <Anchor href="https://romallen.com">
-        <Text color={"black"} size={"large"}>Portfolio</Text>
-        </Anchor>
+        <Text color={"black"} size={"large"}>
+          Portfolio
+        </Text>
+      </Anchor>
     </Header>
-
   );
 }
