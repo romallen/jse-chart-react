@@ -92,6 +92,11 @@ let chartOptions = {
           chart: {
             height: 400,
           },
+          title: {     
+            style: {
+                fontSize: "25px"
+            }
+          },
           rangeSelector: {
             selected: 0,
           },
@@ -237,7 +242,12 @@ export default function HighSt() {
             },
             chartOptions: {
               chart: {
-                height: 400,
+                height: 500,
+              },
+              title: {     
+                style: {
+                    fontSize: "25px"
+                }
               },
               rangeSelector: {
                 selected: 0,
