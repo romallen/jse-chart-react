@@ -76,8 +76,10 @@ let chartOptions = {
     responsive: {
       rules: [{
           condition: {
-              maxWidth: 500,
-              // isMobile
+              // maxWidth: 500,
+              callback: function() {
+                return isMobile
+              }
 
           },
           chartOptions: {
@@ -212,8 +214,11 @@ useEffect( async () => {
           responsive: {
             rules: [{
                 condition: {
-                    maxWidth: 500,
+                    // maxWidth: 500,
                     // isMobile
+                    callback: function() {
+                      return isMobile
+                    }
                 },
                 chartOptions: {
                     chart: {
@@ -261,7 +266,6 @@ useEffect( async () => {
     // setCompaniesInfo([info[0][0], info[0][2]])
     setData(d["ohlcv"].splice(1))
     // let info = JSON.parse(d)
-    console.log(isMobile)
     setCompaniesInfo(d)
   
   };
