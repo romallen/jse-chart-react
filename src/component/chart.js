@@ -122,27 +122,23 @@ let chartOptions = {
 
 export default function HighSt() {
   const chartComponentRef = useRef(null);
-  const [selCompany, setSelCompany] = useState({
-    value: "138SL",
-    name: "138 Student Living Jamaica Limited",
-  });
   const [data, setData] = useState([]);
   const [companiesInfo, setCompaniesInfo] = useState({});
   const [options, setOptions] = useState(chartOptions);
-  const [value, setValue] = useState("medium");
+
 
   useEffect(async () => {
-    let resData = await fetchData(selCompany);
+    let resData = await fetchData({
+      value: "138SL",
+      name: "138 Student Living Jamaica Limited",
+    });
 
-    //  setData(resData)
   }, []);
 
-  useEffect(async () => {
-    let resolvedData = await fetchData(selCompany);
-    // setData(resolvedData)
-  }, [selCompany]);
+
 
   useEffect(() => {
+
     let dataLen = data.length;
     let volume = [];
 
@@ -271,7 +267,7 @@ export default function HighSt() {
         ],
       },
     });
-  }, [data]);
+  }, [data, companiesInfo]);
 
   let fetchData = async (selCompany) => {
     let d = await axios
@@ -286,18 +282,16 @@ export default function HighSt() {
         return "Error: " + e;
       });
 
-    // let info = d.splice(0,1)
-    // setCompaniesInfo([info[0][0], info[0][2]])
-    setData(d["ohlcv"].splice(1));
-    // let info = JSON.parse(d)
+    setData(d["ohlcv"]);
     setCompaniesInfo(d);
+   
   };
 
   return (
     <Main pad={"small"}>
       <Card pad={"small"} background={"#ffffff"} margin={"xxsmall"}>
         <Select
-          onChange={setSelCompany}
+          onChange={async (value) => { await fetchData(value)}}
           options={compSelectionList}
           placeholder={"138 Student Living Jamaica Limited"}
         />
