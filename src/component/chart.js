@@ -90,15 +90,12 @@ let chartOptions = {
         },
         chartOptions: {
           chart: {
-            height: 400,
+            height: 500,
           },
           title: {     
             style: {
                 fontSize: "25px"
             }
-          },
-          rangeSelector: {
-            selected: 0,
           },
           legend: {
             enabled: false,
@@ -230,8 +227,7 @@ export default function HighSt() {
         rules: [
           {
             condition: {
-              // maxWidth: 500,
-              // isMobile
+          
               callback: function () {
                 return isMobile;
               },
@@ -245,9 +241,9 @@ export default function HighSt() {
                     fontSize: "25px"
                 }
               },
-              rangeSelector: {
-                selected: 0,
-              },
+              // rangeSelector: {
+              //   selected: 0,
+              // },
               legend: {
                 enabled: false,
               },
@@ -281,7 +277,7 @@ export default function HighSt() {
         console.log(e);
         return "Error: " + e;
       });
-
+  
     setData(d["ohlcv"]);
     setCompaniesInfo(d);
    

@@ -19,7 +19,6 @@ export default function DataTabs(props) {
   let textSize
   let sizeCheck = () => {
   if (isMobile) {
- 
     textSize= "1.5";
   } else {
     textSize="1";
@@ -31,9 +30,9 @@ sizeCheck();
       let n = [];
       props.news.forEach((element, index) => {
         n.push(
-          <Box pad={"small"}>
+          <Box  key={index} pad={"small"}>
           <Anchor
-            key={index}
+           
             pad="small"
             size={textSize+"em"}
             href={`https://www.jamstockex.com/${element["slug"]}`}
@@ -53,9 +52,9 @@ sizeCheck();
       let n = [];
       props.financials.forEach((element, index) => {
         n.push(
-          <Box pad={"small"}>
+          <Box  key={index} pad={"small"}>
           <Anchor
-            key={index}
+           
             pad="small"
             size={textSize+"em"}
             href={`https://mymoneyja.com/reports/${element["filename"]}`}
@@ -90,16 +89,15 @@ sizeCheck();
       <Tab title="About" color={"black"}>
         <Box pad="medium" ><Paragraph size={(textSize * 1.2)+"em"}>{props.blurb}</Paragraph></Box>
       </Tab>
-      <Tab title="Financials" color={"black"}>
-        <Box pad="medium">
-        {financials}
-         
-          </Box>
-      </Tab>
       <Tab title="News" color={"black"}>
         <Box pad="medium">
         {news}
-         
+          </Box>
+      </Tab>
+      <Tab title="Financials" color={"black"}>
+        <Box pad="medium">
+        {/* {financials}    */}
+        Coming Soon
           </Box>
       </Tab>
       <Tab title="Corporate Actions">
