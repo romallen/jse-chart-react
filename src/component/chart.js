@@ -268,7 +268,7 @@ export default function HighSt() {
   let fetchData = async (selCompany) => {
     let d = await axios
       .get(
-        `https://s3.ap-northeast-1.amazonaws.com/romallen.com/jsonv2/${selCompany["value"]}.json`
+        `https://s3.ap-northeast-1.amazonaws.com/romallen.com/jsonv3/${selCompany["value"]}.json`
       )
       .then((res) => {
         return res.data;
